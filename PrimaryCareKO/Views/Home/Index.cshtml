@@ -14,7 +14,7 @@
         <div id="top" class="topMenu">
             <a href="" class="top-left">Home</a>
             <div class="top-right" >
-                <span onclick="onPatientNameClick()">Patient Name:&nbsp;</span>
+                <span>Patient Name:&nbsp;</span>
                 <input type="text" data-bind="value: patientNameForSearch, valueUpdate: 'keyup'" placeholder="Search Patient"  />
             </div>
         </div>
@@ -90,10 +90,5 @@
     <!-- scripts : routers -->
     <script src="@Url.Content("~/Scripts/appRouter.js")" type="text/javascript"></script>
 
-    <script>
-        var onPatientNameClick = function () {
-            alert('test');
-        }
-    </script>
 </body>
 </html>

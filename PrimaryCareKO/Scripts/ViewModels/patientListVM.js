@@ -52,11 +52,11 @@ ray.vm.patientListVM = (function (ray) {
     });
 
     return {
-        patientList: patientList
-        , loadPatientListById: loadPatientListById
-        , loadPatientListByName: loadPatientListByName
-        , test: test
-    }
+        patientList: patientList,
+        loadPatientListById: loadPatientListById,
+        loadPatientListByName: loadPatientListByName,
+        test: test
+    };
 
 } (ray));
 

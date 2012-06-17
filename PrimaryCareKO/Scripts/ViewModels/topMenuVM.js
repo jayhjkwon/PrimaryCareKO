@@ -13,10 +13,10 @@ ray.vm.topMenuVM = (function () {
     var patientNameForSearch = ko.observable();
 
     return {
-        patientNameForSearch : patientNameForSearch
-    }
+        patientNameForSearch: patientNameForSearch
+    };
 
-}());
+} ());
 
 $(function () {
     ko.applyBindings(ray.vm.topMenuVM, document.getElementById('top'));

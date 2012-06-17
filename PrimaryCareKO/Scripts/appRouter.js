@@ -1,6 +1,6 @@
 ﻿/// <reference path="Libs/jquery-1.7.2.js" />
 /// <reference path="Libs/modernizr-2.5.3.js" />
-/// <reference path="Libs/knockout.debug.js" />
+/// <reference path="../Libs/knockout-2.1.0.debug.js" />
 /// <reference path="Libs/knockout.mapping-latest.debug.js" />
 /// <reference path="Libs/sammy/sammy.js" />
 /// <reference path="main.js" />
@@ -11,8 +11,8 @@
 /// <reference path="ViewModels/uploadDocumentVM.js" />
 
 
-ktc.namespace('ktc.router');
-ktc.router.appRouter = (function () {
+ray.namespace('ray.router');
+ray.router.appRouter = (function () {
 
     var init = $.sammy(function () {
         this.get("", function () {
@@ -21,22 +21,22 @@ ktc.router.appRouter = (function () {
 
         this.get('#/patient/:pid', function () {
             var pid = this.params.pid;
-            ktc.vm.patientListVM.loadPatientListById(pid, true);
-            ktc.vm.folderListVM.loadFolderList(pid);
+            ray.vm.patientListVM.loadPatientListById(pid, true);
+            ray.vm.folderListVM.loadFolderList(pid);
         });
 
         this.get('#/patient/folder/:pid', function () {
             var pid = this.params.pid;
-            ktc.vm.patientListVM.loadPatientListById(pid, true);
-            ktc.vm.folderListVM.loadFolderList(pid);
-            ktc.vm.documentListVM.isVisible(true);
-            ktc.vm.documentListVM.loadDocumentList(pid);
-            ktc.vm.uploadDocumentVM.isVisible(false);
+            ray.vm.patientListVM.loadPatientListById(pid, true);
+            ray.vm.folderListVM.loadFolderList(pid);
+            ray.vm.documentListVM.isVisible(true);
+            ray.vm.documentListVM.loadDocumentList(pid);
+            ray.vm.uploadDocumentVM.isVisible(false);
         });
 
         this.get('#/document/upload', function () {
-            ktc.vm.documentListVM.isVisible(false);
-            ktc.vm.uploadDocumentVM.isVisible(true);
+            ray.vm.documentListVM.isVisible(false);
+            ray.vm.uploadDocumentVM.isVisible(true);
         });
     }).run();
 
@@ -44,6 +44,6 @@ ktc.router.appRouter = (function () {
 
 }());
 
-$(function(){
-    ktc.router.appRouter.init;
+$(function () {
+    ray.router.appRouter.init;
 });

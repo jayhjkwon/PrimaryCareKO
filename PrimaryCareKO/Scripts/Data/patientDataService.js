@@ -1,6 +1,6 @@
 ﻿/// <reference path="../Libs/jquery-1.7.2.js" />
 /// <reference path="../Libs/modernizr-2.5.3.js" />
-/// <reference path="../Libs/knockout.debug.js" />
+/// <reference path="../Libs/knockout-2.1.0.debug.js" />
 /// <reference path="../Libs/knockout.mapping-latest.debug.js" />
 /// <reference path="../Libs/sammy/sammy.js" />
 /// <reference path="../Libs/underscore.js" />
@@ -8,8 +8,8 @@
 /// <reference path="../common.js" />
 
 
-ktc.namespace('ktc.data');
-ktc.data.patientDataService = (function () {
+ray.namespace('ray.data');
+ray.data.patientDataService = (function () {
     var patientsJson = [{ "PatientId": "100", "FirstName": "Scott", "LastName": "Hanselman", "Gender": "Male", "DateOfBirth": "1980-04-24", "Phone": "000-0000-0000" },
             { "PatientId": "200", "FirstName": "Choi", "LastName": "Hongman", "Gender": "Male", "DateOfBirth": "1970-12-21", "Phone": "000-1111-1111" },
             { "PatientId": "300", "FirstName": "Jason", "LastName": "Mraz", "Gender": "Female", "DateOfBirth": "1978-05-21", "Phone": "000-2222-2222" },
@@ -17,7 +17,7 @@ ktc.data.patientDataService = (function () {
             { "PatientId": "500", "FirstName": "Michael", "LastName": "Carick", "Gender": "Male", "DateOfBirth": "1993-04-21", "Phone": "000-4444-4444"}],
 
     getPatientListById = function (pid, callback) {
-        if (pid === '') {
+        if (!pid) {
             callback([]);
         } else {
             callback(_.filter(patientsJson, function (p) {
@@ -27,7 +27,7 @@ ktc.data.patientDataService = (function () {
     },
 
     getPatientListByName = function (patientName, callback) {
-        if (patientName === '') {
+        if (!patientName) {
             callback([]);
         } else {
             callback(_.filter(patientsJson, function (p) {

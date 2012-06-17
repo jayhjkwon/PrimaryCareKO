@@ -1,6 +1,6 @@
 ﻿/// <reference path="../Libs/jquery-1.7.2.js" />
 /// <reference path="../Libs/modernizr-2.5.3.js" />
-/// <reference path="../Libs/knockout.debug.js" />
+/// <reference path="../Libs/knockout-2.1.0.debug.js" />
 /// <reference path="../Libs/knockout.mapping-latest.debug.js" />
 /// <reference path="../Libs/sammy/sammy.js" />
 /// <reference path="../main.js" />
@@ -8,20 +8,20 @@
 /// <reference path="../Models/document.js" />
 /// <reference path="../Data/documentDataService.js" />
 
-ktc.namespace('ktc.vm');
-ktc.vm.documentListVM = (function (ktc) {
+ray.namespace('ray.vm');
+ray.vm.documentListVM = (function (ray) {
     var self = this;
     var isVisible = ko.observable(false),
     documentList = ko.observableArray(),
 
     loadDocumentList = function (pid) {
-        ktc.data.documentDataService.getDocumentListByPid(pid, bindDocumentList);
+        ray.data.documentDataService.getDocumentListByPid(pid, bindDocumentList);
     },
 
     bindDocumentList = function (documents) {
         documentList.removeAll();
         _.each(documents, function (f) {
-            var document = new ktc.model.Document()
+            var document = new ray.model.Document()
                                 .patientId(f.PatientId)
                                 .title(f.Title)
                                 .url(f.Url)
@@ -31,10 +31,10 @@ ktc.vm.documentListVM = (function (ktc) {
     },
 
     onTitleClick = function (document) {
-        ktc.vm.patientListVM.test(document);    // demonstrate to call function in other ViewModels
+        ray.vm.patientListVM.test(document);    // demonstrate to call function in other ViewModels
     };
 
-    ktc.vm.topMenuVM.patientNameForSearch.subscribe(function (name) {
+    ray.vm.topMenuVM.patientNameForSearch.subscribe(function (name) {
         if (!name) {
             documentList([]);
             isVisible(false);
@@ -48,8 +48,8 @@ ktc.vm.documentListVM = (function (ktc) {
         , onTitleClick: onTitleClick
     };
 
-} (ktc));
+} (ray));
 
 $(function () {
-    ko.applyBindings(ktc.vm.documentListVM, document.getElementById('body-document-list'));
+    ko.applyBindings(ray.vm.documentListVM, document.getElementById('body-document-list'));
 });

@@ -1,6 +1,6 @@
 ﻿/// <reference path="../Libs/jquery-1.7.2.js" />
 /// <reference path="../Libs/modernizr-2.5.3.js" />
-/// <reference path="../Libs/knockout.debug.js" />
+/// <reference path="../Libs/knockout-2.1.0.debug.js" />
 /// <reference path="../Libs/knockout.mapping-latest.debug.js" />
 /// <reference path="../Libs/sammy/sammy.js" />
 /// <reference path="../main.js" />
@@ -9,21 +9,21 @@
 /// <reference path="../Data/folderDataService.js" />
 /// <reference path="topMenuVM.js" />
 
-ktc.namespace('ktc.vm');
-ktc.vm.folderListVM = (function (ktc) {
+ray.namespace('ray.vm');
+ray.vm.folderListVM = (function (ray) {
     var self = this;
 
     var isVisible = ko.observable(false),
     folderList = ko.observableArray(),
 
     loadFolderList = function (pid) {
-        ktc.data.folderDataService.getFolderListByPid(pid, bindFolderList);
+        ray.data.folderDataService.getFolderListByPid(pid, bindFolderList);
     },
 
     bindFolderList = function (folders) {
         folderList.removeAll();
         _.each(folders, function (f) {
-            var folder = new ktc.model.Folder();
+            var folder = new ray.model.Folder();
             folder.patientId(f.PatientId);
             folder.title(f.Title);
             folder.lastUpdateTime(f.LastUpdateTime);
@@ -31,7 +31,7 @@ ktc.vm.folderListVM = (function (ktc) {
         });
     };
 
-    ktc.vm.topMenuVM.patientNameForSearch.subscribe(function (name) {
+    ray.vm.topMenuVM.patientNameForSearch.subscribe(function (name) {
         if (!name) {
             folderList([]);
         }
@@ -45,8 +45,8 @@ ktc.vm.folderListVM = (function (ktc) {
         , loadFolderList: loadFolderList
     };
 
-}(ktc));
+}(ray));
 
 $(function () {
-    ko.applyBindings(ktc.vm.folderListVM, document.getElementById('left-folder-list'));
+    ko.applyBindings(ray.vm.folderListVM, document.getElementById('left-folder-list'));
 });

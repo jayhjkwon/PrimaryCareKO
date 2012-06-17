@@ -1,8 +1,8 @@
 ﻿/// <reference path="main.js" />
 
 
-ktc.namespace('ktc.common');
-ktc.common = (function () {
+ray.namespace('ray.common');
+ray.common = (function () {
 
     return {};
 }());

@@ -1,6 +1,6 @@
 ﻿/// <reference path="../Libs/jquery-1.7.2.js" />
 /// <reference path="../Libs/modernizr-2.5.3.js" />
-/// <reference path="../Libs/knockout.debug.js" />
+/// <reference path="../Libs/knockout-2.1.0.debug.js" />
 /// <reference path="../Libs/knockout.mapping-latest.debug.js" />
 /// <reference path="../Libs/sammy/sammy.js" />
 /// <reference path="../main.js" />
@@ -12,24 +12,24 @@
 /// <reference path="documentListVM.js" />
 /// <reference path="uploadDocumentVM.js" />
 
-ktc.namespace('ktc.vm');
-ktc.vm.patientListVM = (function (ktc) {
+ray.namespace('ray.vm');
+ray.vm.patientListVM = (function (ray) {
     var self = this;
 
     var patientList = ko.observableArray(),
 
     loadPatientListById = function (pid) {
-        ktc.data.patientDataService.getPatientListById(pid, bindPatientList);
+        ray.data.patientDataService.getPatientListById(pid, bindPatientList);
     },
 
     loadPatientListByName = function (name) {
-        ktc.data.patientDataService.getPatientListByName(name, bindPatientList);
+        ray.data.patientDataService.getPatientListByName(name, bindPatientList);
     },
 
     bindPatientList = function (patients) {
         patientList.removeAll();
         _.each(patients, function (p) {
-            patientList.push(new ktc.model.Patient()
+            patientList.push(new ray.model.Patient()
                                         .pid(p.PatientId)
                                         .firstName(p.FirstName)
                                         .lastName(p.LastName)
@@ -47,7 +47,7 @@ ktc.vm.patientListVM = (function (ktc) {
         }
     };
 
-    ktc.vm.topMenuVM.patientNameForSearch.subscribe(function (name) {
+    ray.vm.topMenuVM.patientNameForSearch.subscribe(function (name) {
         loadPatientListByName(name);
     });
 
@@ -58,8 +58,8 @@ ktc.vm.patientListVM = (function (ktc) {
         , test: test
     }
 
-} (ktc));
+} (ray));
 
 $(function () {
-    ko.applyBindings(ktc.vm.patientListVM, document.getElementById('left-patient-list'));
+    ko.applyBindings(ray.vm.patientListVM, document.getElementById('left-patient-list'));
 });
